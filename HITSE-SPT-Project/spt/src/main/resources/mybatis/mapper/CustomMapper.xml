@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hit.spt.mapper.CustomerMapper">
+    <select id="queryCustomerById" resultType="Customer" parameterType="java.lang.Integer">
+        select c_id, type, name, gender, phone, address
+        from customer_info
+        where c_id = #{c_id}
+    </select>
+    <select id="queryCustomerByPhone" resultType="Customer" parameterType="java.lang.String">
+        select c_id, type, name, gender, phone, address, password
+        from customer_info
+        where phone = #{phone}
+    </select>
+    <select id="queryCustomerByName" resultType="Customer" parameterType="java.lang.String">
+        select c_id, type, name, gender, phone, address
+        from customer_info
+        where name = #{name}
+    </select>
+    <select id="queryCustomerByType" resultType="Customer" parameterType="java.lang.String">
+        select c_id, type, name, gender, phone, address
+        from customer_info
+        where type = #{type}
+    </select>
+    <select id="queryCustomerList" resultType="Customer">
+        select c_id, type, name, gender, phone, address
+        from spt.customer_info
+    </select>
+    <insert id="insertCustomer" parameterType="Customer">
+        insert into customer_info(c_id, type, name, gender, phone, address, password)
+        values (#{c_id}, #{type}, #{name}, #{gender}, #{phone}, #{address}, #{password})
+    </insert>
+    <delete id="deleteCustomerById" parameterType="java.lang.Integer">
+        delete
+        from customer_info
+        where c_id = #{c_id}
+    </delete>
+    <update id="updateCustomerById" parameterType="Customer">
+        update customer_info
+        set type=#{type},
+            name=#{name},
+            gender=#{gender},
+            phone=#{phone},
+            address=#{address},
+            password=#{password}
+        where c_id = #{c_id}
+    </update>
+</mapper>

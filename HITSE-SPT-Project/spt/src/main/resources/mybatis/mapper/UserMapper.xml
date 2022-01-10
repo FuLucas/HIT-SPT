@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hit.spt.mapper.UserMapper">
+    <insert id="insertUser" parameterType="User">
+        insert into user_info(u_id, name, gender, position, level, username, password)
+        values (#{u_id}, #{name}, #{gender}, #{position}, #{level}, #{username}, #{password})
+    </insert>
+    <delete id="deleteUserByUid" parameterType="java.lang.Integer">
+        delete
+        from user_info
+        where #{u_id} = u_id
+    </delete>
+    <select id="queryUserList" resultType="User">
+        select u_id, name, gender, position, level, username, password
+        from user_info
+    </select>
+    <select id="queryUserByUid" resultType="User">
+        select u_id, name, gender, position, level, username, password
+        from user_info
+        where #{u_id} = u_id
+    </select>
+    <select id="queryUserByName" parameterType="java.lang.String" resultType="User">
+        select u_id, name, gender, position, level, username, password
+        from user_info
+        where #{name} = name
+    </select>
+    <select id="queryUserByUsername" parameterType="java.lang.String" resultType="User">
+        select u_id, name, gender, position, level, username, password
+        from user_info
+        where #{username} = username
+    </select>
+    <update id="updateUser" parameterType="User">
+        update user_info
+        set name=#{name},
+            gender=#{gender},
+            position=#{position},
+            level=#{level},
+            username=#{username},
+            password=#{password}
+        where u_id = #{u_id}
+    </update>
+</mapper>
